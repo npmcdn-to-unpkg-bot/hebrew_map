@@ -1,4 +1,3 @@
-'''html
 
 <h1> Map of the holy land / Jacob Ben Abraham
 </h1>
@@ -60,4 +59,3 @@
     <occupation> Cartographer </occupation>
   </Description>
 <rdf:/RDF>
-'''
