@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+	
+	<link rel="stylesheet" href="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+	
+    <script src="Scripts/jquery-3.1.0.js"></script>
+	
+    <script src="https://npmcdn.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
+    <script src="leaf.js"></script>
+
+    <script src="Scripts/jquery-ui-1.12.0.js"></script>
+    
+    <style>
+        #map {
+            height: 900px;
+        }
+    </style>
+</head>
+<body dir="rtl">
+    <nav class="navbar navbar-right">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Jce-Map</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          
+     
+                <ul class="nav navbar-nav navbar-left">
+                    <li><a href="https://ad51a828c51ebcac187c921aac4c44008b18780e.googledrive.com/host/0B1cFQWwVTz4BY2twNzZsZFBnRDA/Home.html" target="_blank">שבטים</a></li>
+                    <li><a href="https://d9916fcd5fed2f49b5d237faf0ca0583b52bf342.googledrive.com/host/0B1cFQWwVTz4BWmpqX0FVaVE3cEU" target="_blank">על המפה</a></li>
+                   
+
+                 
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="panel-body col-lg-10" style="z-index:1" id="map"></div>
+    <div  class="col-lg-2">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                סינון:
+            </div>
+            <div class="panel-body">
+                <div class="form">
+                <div class="form-group">
+                    <label for="shevet">שבט:</label>
+                    <select class="form-control" id="shevet" onchange="SetMarker">
+                        <option value="">כל השבטים</option>
+                        <option value="ראובן">ראובן</option>
+                        <option value="שמעון">שמעון</option>
+                        <option value="לוי">לוי</option>
+                        <option value="יהודה">יהודה</option>
+                        <option value="דן">דן</option>
+                        <option value="נפתלי">נפתלי</option>
+                        <option value="גד">גד</option>
+                        <option value="אשר">אשר</option>
+                        <option value="יששכר">יששכר</option>
+                        <option value="זבולון">זבולון</option>
+                        <option value="יוסף">יוסף</option>
+                        <option value="בנימין">בנימין</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="book">ספר :</label>
+                    <select class="form-control" id="book">
+                        <option value="">כל הספרים</option>
+
+                        <option value="בראשית">בראשית </option>
+                        <option value="שמות">שמות</option>
+                        <option value="ויקרא">ויקרא</option>
+                        <option value="במדבר">במדבר</option>
+                        <option value="דברים">דברים</option>
+
+                        <option value="יהושע">יהושע </option>
+                        <option value="שופטים">שופטים</option>
+                        <option value="שמואל">שמואל </option>
+                        <option value="מלכים">מלכים</option>
+                        <option value="ישעיה">ישעיה</option>
+                        <option value="ירמיהו">ירמיהו</option>
+                        <option value="יחזקאל">יחזקאל</option>
+                        <option value="תרי עשר">תרי עשר</option>
+
+                        <option value="תהילים ">יהושע </option>
+                        <option value="משלי ">שופטים</option>
+                        <option value="איוב ">שמואל </option>
+                        <option value="שיר השירים ">מלכים</option>
+                        <option value="רות">ישעיה</option>
+                        <option value="איכה">ירמיהו</option>
+                        <option value="קהלת">יחזקאל</option>
+                        <option value="אסתר">תרי עשר</option>
+                        <option value="דניאל">דניאל </option>
+                        <option value="עזרא - נחמיה">עזרא - נחמיה</option>
+                        <option value="דברי הימים">דברי הימים</option>
+                    </select>
+                </div>
+         
+                <button type="submit" class="btn btn-primary">חפש</button>
+            </div>
+              </div> 
+        </div>
+        <div id="showData" class="panel panel-default">
+            <div class="page-header">
+                <h3 id="itemName"></h3>
+            </div>
+            <div  class="panel-body">
+             
+                <h4>אזכור בתנ"ך:</h4>
+                <input type="checkbox" id="inbible"/>
+               
+
+                <h4>קישורים:</h4>
+                <ul class="list-group" id="links">
+                    <li>
+                        <a  id="wiki" class="openFrame" target="_blank" >ויקפדיה</a>
+                    </li>
+                    <li>
+                        <a id="sparks" class="openFrame" target="_blank" >ספארק</a>
+                    </li>
+                    <li>
+                        <a id="dbpedia" class="openFrame" target="_blank" >דבפדיה</a>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+    </div>
+
+   
+</body>
+</html>
